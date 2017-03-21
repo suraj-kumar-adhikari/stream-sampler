@@ -1,0 +1,25 @@
+{
+    "name": "surajprogrammez/stream-sampler",
+    "description": "PHP 7 based stream sampler",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "StreamSampler\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "6.0.*"
+    },
+    "authors": [
+        {
+            "name": "Suraj Kumar Adhikari",
+            "email": "surajprogrammer@live.com"
+        }
+    ],
+    "config": {
+        "preferred-install": "dist"
+    }
+}
