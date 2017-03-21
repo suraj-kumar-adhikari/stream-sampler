@@ -1,0 +1,27 @@
+#!/usr/bin/env php
+<?php
+
+require_once 'vendor/autoload.php';
+
+use StreamSampler\{
+	InputIterator,
+	RandomGenerator
+};
+
+$length = (int) $argv[1] ?? 5;
+$generateRandom = $argv[2] ?? null;
+
+if($generateRandom === '--generate-random'){
+	$iterator = new class implements \IteratorAggregate{
+		public function getIterator()
+	    {
+	        yield RandomGenerator::getRandomBytes(4000);
+	    }
+	};
+} else {
+	$iterator = new InputIterator();
+}
+
+$result = (new StreamSampler\RandomSampler($iterator))->getRandomData($length);
+
+echo implode('', $result), "\n";
