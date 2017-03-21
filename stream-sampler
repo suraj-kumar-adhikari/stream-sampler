@@ -8,8 +8,8 @@ use StreamSampler\{
 	RandomGenerator
 };
 
-$length = (int) $argv[1] ?? 5;
-$generateRandom = $argv[2] ?? null;
+$length = (int) ($argv[1] ?? 5);
+$generateRandom = $argv[2] ?? $argv[1] ?? null;
 
 if($generateRandom === '--generate-random'){
 	$iterator = new class implements \IteratorAggregate{
@@ -19,7 +19,7 @@ if($generateRandom === '--generate-random'){
 	    }
 	};
 } else {
-	$iterator = new InputIterator();
+	$iterator = new InputIterator('php://stdin');
 }
 
 $result = (new StreamSampler\RandomSampler($iterator))->getRandomData($length);

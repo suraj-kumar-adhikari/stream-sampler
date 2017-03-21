@@ -9,9 +9,18 @@ namespace StreamSampler;
  */
 class InputIterator implements \IteratorAggregate
 {
+    protected $stream;
+
+    public function __construct($stream)
+    {
+        $this->stream = $stream;
+    }
+
     public function getIterator()
     {
-        while ($line = fgets(STDIN)) {
+        $stream = fopen($this->stream, 'r');
+
+        while ($line = fgets($stream)) {
             yield str_split($line);
         }
     }

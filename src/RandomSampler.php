@@ -29,19 +29,17 @@ class RandomSampler
         $counter = 0;
 
         foreach ($this->iterator as $items) {
-            if (is_array($items)) {
-                foreach ($items as $item) {
-                    if ($counter < $length) {
-                        $data[$counter] = $item;
-                    } else {
-                        $random = (int) mt_rand(0, $counter);
+            foreach ($items as $item) {
+                if ($counter < $length) {
+                    $data[$counter] = $item;
+                } else {
+                    $random = (int) mt_rand(0, $counter);
 
-                        if ($random < $length) {
-                            $data[$random] = $item;
-                        }
+                    if ($random < $length) {
+                        $data[$random] = $item;
                     }
-                    $counter++;
                 }
+                $counter++;
             }
         }
 

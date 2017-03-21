@@ -18,6 +18,6 @@ class RandomGenerator
      */
     public static function getRandomBytes(int $length) : array
     {
-        return str_split(base64_encode(random_bytes(4000)));
+        return str_split(base64_encode(random_bytes($length)));
     }
 }
