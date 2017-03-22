@@ -4,22 +4,22 @@
 require_once 'vendor/autoload.php';
 
 use StreamSampler\{
-	InputIterator,
-	RandomGenerator
+    InputIterator,
+    RandomGenerator
 };
 
 $length = (int) ($argv[1] ?? 5);
 $generateRandom = $argv[2] ?? $argv[1] ?? null;
 
 if($generateRandom === '--generate-random'){
-	$iterator = new class implements \IteratorAggregate{
-		public function getIterator()
-	    {
-	        yield RandomGenerator::getRandomBytes(4000);
-	    }
-	};
+    $iterator = new class implements \IteratorAggregate{
+        public function getIterator()
+	{
+	    yield RandomGenerator::getRandomBytes(4000);
+	}
+    };
 } else {
-	$iterator = new InputIterator('php://stdin');
+    $iterator = new InputIterator('php://stdin');
 }
 
 $result = (new StreamSampler\RandomSampler($iterator))->getRandomData($length);
